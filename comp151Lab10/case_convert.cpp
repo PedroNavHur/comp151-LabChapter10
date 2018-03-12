@@ -2,7 +2,7 @@
 // applied in a C++ program
 
 // Pedro J. Navarrete
-// v0.00
+// v1.00
 
 #include <iostream>
 #include <cctype>
