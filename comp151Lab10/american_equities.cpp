@@ -1,41 +1,58 @@
 // This program tests a password for the American Equities
 // web page to see if the format is correct
 
-// Place Your Name Here
+// Pedro J. Navarrete
+// V1.00
 
 #include <iostream>
 #include <cctype>
 #include <cstring>
 
-using namespace std; 
+using namespace std;
 
 //function prototypes 
 
-bool testPassWord(char[]);  
+bool testPassWord(char[]);
+bool hasUpperCase(char*);
 int countLetters(char*);
 int countDigits(char*);
 
+// password validation
+int const MAX_PASS_SIZE = 10;
+int const MAX_LETTERS = 4;
+int const MAX_DIGITS = 6;
+
 int main()
 {
-	char passWord[20];  
-	
-	cout << "Enter a password consisting of exactly 5 "
-		 << "letters and 3 digits:" << endl;
-	cin.getline(passWord,20);
+	char passWord[20];
+
+	cout << "Enter a password consisting of exactly "
+		<< MAX_LETTERS << " lowercase letters and "
+		<< MAX_DIGITS << " digits:" << endl;
+	cin.getline(passWord, 20);
 
 	if (testPassWord(passWord))
 		cout << "Please wait - your password is being verified" << endl;
 	else
 	{
 		cout << "Invalid password. Please enter a password "
-		     << "with exactly 5 letters and 3 digits" << endl;
-	    cout << "For example, my37RuN9 is valid" << endl;
+			<< "with exactly "
+			<< MAX_LETTERS << " lowercase letters and "
+			<< MAX_DIGITS << " digits" << endl;
+		cout << "For example, 123456abcd is valid" << endl;
 	}
 
+	int passLetters;
+	int passDigits;
 
 	// FILL IN THE CODE THAT WILL CALL countLetters and 
 	// countDigits and will print to the screen both the number of
 	// letters and digits contained in the password.  
+	passLetters = countLetters(passWord);
+	passDigits = countDigits(passWord);
+
+	cout << "Letters: " << passLetters << endl;
+	cout << "Digits: " << passDigits << endl;
 
 	return 0;
 }
@@ -46,9 +63,9 @@ int main()
 //
 // task:			determines if the word contained in the
 //				    character array passed to it, contains
-//					exactly 5 letters and 3 digits.
+//					exactly MAX_LETTERS letters and MAX_DIGITS digits.
 // data in:			a word contained in a character array
-// data returned:   true if the word contains 5 letters & 3
+// data returned:   true if the word contains MAX_LETTERS letters & MAX_DIGITS
 //					digits, false otherwise
 //
 //**************************************************************
@@ -57,12 +74,29 @@ bool testPassWord(char custPass[])
 	int numLetters, numDigits, length;
 
 	length = strlen(custPass);
-    numLetters = countLetters(custPass);
+	numLetters = countLetters(custPass);
 	numDigits = countDigits(custPass);
-	if (numLetters == 5 && numDigits == 3 && length == 8 )
+	
+	if (hasUpperCase(custPass)) {
+		return false;
+	}
+
+	if (numLetters == MAX_LETTERS && numDigits == MAX_DIGITS && length == MAX_PASS_SIZE)
 		return true;
 	else
 		return false;
+
+
+}
+
+bool hasUpperCase(char *strPtr) {
+	while (*strPtr != '\0') {
+		if (isupper(*strPtr)) {
+			return true;
+		}
+		strPtr++;
+	}
+	return false;
 }
 
 
@@ -76,14 +110,14 @@ bool testPassWord(char custPass[])
 // data returned:   the number of letters in the string
 //
 //**************************************************************
-int countLetters(char *strPtr) 
+int countLetters(char *strPtr)
 {
 	int occurs = 0;
 
-	while(*strPtr != '\0')       
+	while (*strPtr != '\0')
 
 	{
-		if (isalpha(*strPtr))  
+		if (isalpha(*strPtr))
 			occurs++;
 		strPtr++;
 	}
@@ -100,14 +134,14 @@ int countLetters(char *strPtr)
 //
 //**************************************************************
 int countDigits(char *strPtr)  // this function counts the
-                               // number of digits
-{  
+							   // number of digits
+{
 	int occurs = 0;
 
-	while(*strPtr != '\0')
+	while (*strPtr != '\0')
 	{
 		if (isdigit(*strPtr))  // isdigit determines if
-			                   // the character is a digit
+							   // the character is a digit
 			occurs++;
 		strPtr++;
 	}
