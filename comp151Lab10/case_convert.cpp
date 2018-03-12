@@ -1,6 +1,9 @@
 // This program shows how the toupper and tolower functions can be
 // applied in a C++ program
 
+// Pedro J. Navarrete
+// v0.00
+
 #include <iostream>
 #include <cctype>
 #include <iomanip>
@@ -34,9 +37,9 @@ int main()
 		   cout << "Would you like to find the average for another month?";
 		   cout << endl << "Enter Y or N" << endl;
 		   cin >> choice;
-		} while(toupper(choice) != 'Y' && toupper(choice) != 'N'); 
+		} while(tolower(choice) != 'y' && tolower(choice) != 'n'); 
 
-	} while (toupper(choice) == 'Y');
+	} while (tolower(choice) == 'y');
 	
 	
 	return 0;

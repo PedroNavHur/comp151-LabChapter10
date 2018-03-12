@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="american_equities.cpp">
+    <ClCompile Include="case_convert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
