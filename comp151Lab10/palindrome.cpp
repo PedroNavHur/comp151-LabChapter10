@@ -8,7 +8,7 @@ using namespace std;
 
 const int MAX_SIZE = 50;
 
-bool reverseStr(char []);
+bool isPalin(char []);
 
 int main() {
 	char sentence[MAX_SIZE + 1];
@@ -17,7 +17,7 @@ int main() {
 	cout << "Input a string with at most " << MAX_SIZE << " characters" << endl;
 	cin.getline(sentence, MAX_SIZE + 1);
 	
-	if(reverseStr(sentence)){
+	if(isPalin(sentence)){
 		cout << sentence << " is a palindrome\n";
 	} else {
 		cout << sentence << " is not a palindrome\n";
@@ -25,7 +25,7 @@ int main() {
 
 }
 
-bool reverseStr(char str[]){
+bool isPalin(char str[]){
 	int hold;
 	int i = 0;
 	int j = strlen(str) -1;
